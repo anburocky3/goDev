@@ -1,0 +1,13 @@
+{
+  "$schema": "https://wails.io/schemas/config.v2.json",
+  "name": "goDev",
+  "outputfilename": "goDev",
+  "frontend:install": "bun install",
+  "frontend:build": "bun build",
+  "frontend:dev:watcher": "bun dev",
+  "frontend:dev:serverUrl": "auto",
+  "author": {
+    "name": "Anbuselvan Rocky",
+    "email": "15264938+anburocky3@users.noreply.github.com"
+  }
+}

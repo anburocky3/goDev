@@ -1,0 +1,55 @@
+# ######################
+# Wails specific
+# ######################
+# Auto-generated Wails JS bindings (DO NOT commit)
+/frontend/wailsjs/
+
+# Compiled Wails application binaries and build folders
+/build/bin/
+/build/app.asar
+/build/darwin/
+/build/windows/
+/build/linux/
+
+# ######################
+# React / Node / Vite
+# ######################
+/frontend/node_modules/
+/frontend/dist/
+/frontend/build/
+.npm
+.eslintcache
+.vite/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ######################
+# Go specific
+# ######################
+# Binaries for Go programs
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.prof
+
+# Workspace state files
+go.work
+go.work.sum
+
+# ######################
+# IDEs & Environments
+# ######################
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+.DS_Store
+Thumbs.db
