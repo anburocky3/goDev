@@ -1,7 +1,21 @@
 import { useState, useEffect, useRef } from "react";
+import { Quit } from "../wailsjs/runtime/runtime";
+import { MinimizeToTray, StartAllServices, StopAllServices } from "../wailsjs/go/main/App";
+
+type ServiceStatus = {
+  running: boolean;
+  message?: string;
+  activeWebServer?: string;
+  apachePid?: number;
+  nginxPid?: number;
+  mysqlPid?: number;
+  phpPid?: number;
+};
 
 function App() {
-  const [isRunning, setIsRunning] = useState(true);
+  const [isRunning, setIsRunning] = useState(false);
+  const [statusMessage, setStatusMessage] = useState("Start All ready");
+  const [isBusy, setIsBusy] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -16,8 +30,28 @@ function App() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [menuRef]);
 
-  const handleToggleServices = () => {
-    setIsRunning(!isRunning);
+  const handleToggleServices = async () => {
+    if (isBusy) {
+      return;
+    }
+
+    setIsBusy(true);
+    try {
+      const result: ServiceStatus = isRunning
+        ? await StopAllServices()
+        : await StartAllServices();
+
+      setIsRunning(result.running);
+      setStatusMessage(
+        result.message ??
+          (result.running ? "Services running" : "Services stopped"),
+      );
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      setStatusMessage(message);
+    } finally {
+      setIsBusy(false);
+    }
   };
 
   return (
@@ -117,7 +151,13 @@ function App() {
                   <span>Preferences...</span>
                 </div>
                 <div className="px-4 py-2 text-[13px] text-gray-700 flex justify-between items-center hover:bg-gray-100 cursor-pointer">
-                  <span>Exit</span>
+                  <span onClick={() => void MinimizeToTray()}>Minimize</span>
+                </div>
+                <div
+                  className="px-4 py-2 text-[13px] text-gray-700 flex justify-between items-center hover:bg-gray-100 cursor-pointer"
+                  onClick={() => void Quit()}
+                >
+                  <span>Quit</span>
                 </div>
               </div>
             )}
@@ -145,8 +185,9 @@ function App() {
         {/* Sidebar Footer (Toggle Button) */}
         <div className="p-5 border-t border-gray-200">
           <button
-            className={`flex items-center font-medium text-[14.5px] transition-colors focus:outline-none ${isRunning ? "text-sky-600" : "text-gray-600 hover:text-sky-600"}`}
+            className={`flex items-center font-medium text-[14.5px] transition-colors focus:outline-none ${isRunning ? "text-sky-600" : "text-gray-600 hover:text-sky-600"} ${isBusy ? "opacity-60" : ""}`}
             onClick={handleToggleServices}
+            disabled={isBusy}
           >
             <i
               className={`fa-regular ${isRunning ? "fa-square" : "fa-circle-play"} text-[18px] mr-3`}
@@ -180,6 +221,10 @@ function App() {
             </button>
           </div>
         </header>
+
+        <div className="mb-6 rounded-lg border border-sky-100 bg-sky-50 px-4 py-3 text-sm text-sky-700 shadow-sm">
+          {statusMessage}
+        </div>
 
         {/* Services List */}
         <div className="flex flex-col gap-4">

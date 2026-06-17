@@ -3,8 +3,8 @@
   "name": "goDev",
   "outputfilename": "goDev",
   "frontend:install": "bun install",
-  "frontend:build": "bun build",
-  "frontend:dev:watcher": "bun dev",
+  "frontend:build": "bun run build",
+  "frontend:dev:watcher": "bun run dev",
   "frontend:dev:serverUrl": "auto",
   "author": {
     "name": "Anbuselvan Rocky",

@@ -1,0 +1,38 @@
+defaultWebServer: apache
+
+apache:
+  enabled: true
+  path: tools/apache/httpd-2.4.62-win64-VS17/bin/httpd.exe
+  args:
+    - -f
+    - tools/apache/httpd-2.4.62-win64-VS17/conf/httpd.conf
+  ports:
+    - 80
+    - 443
+
+nginx:
+  enabled: false
+  path: tools/nginx/nginx-1.22.0/nginx.exe
+  args:
+    - -c
+    - tools/nginx/nginx-1.22.0/conf/nginx.conf
+  ports:
+    - 8080
+    - 8443
+
+mysql:
+  enabled: true
+  path: tools/mysql/mysql-8.0.30-winx64/bin/mysqld.exe
+  args:
+    - --defaults-file=generated/mysql/my.ini
+  ports:
+    - 3306
+
+php:
+  enabled: true
+  path: tools/php/php-8.4.19-Win32-vs17-x64/php-cgi.exe
+  args:
+    - -b
+    - 127.0.0.1:9001
+  ports:
+    - 9001

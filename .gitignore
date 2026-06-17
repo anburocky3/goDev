@@ -53,3 +53,13 @@ go.work.sum
 *.swp
 .DS_Store
 Thumbs.db
+
+# bundle it in future
+tools/php/**/*
+tools/mysql/**/*
+tools/apache/**/*
+tools/nginx/**/*
+generated/**/*
+logs/**/*
+www/**/*
+.env* *.pem*.key
