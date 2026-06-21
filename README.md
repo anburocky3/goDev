@@ -3,8 +3,11 @@
 ![Wails](https://img.shields.io/badge/Wails-v2.12.0-blue)
 ![Go](https://img.shields.io/badge/Go-1.26.4-brightgreen)
 ![React](https://img.shields.io/badge/React-v18.2.0-61dafb)
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
 
 A powerful desktop application for managing local development services (Apache, Nginx, MySQL, PHP) with an intuitive system tray interface. Built with Go and Wails for cross-platform support on Windows, macOS, and Linux.
+
+**Author:** Anbuselvan Annamalai
 
 ## 🌟 Features
 
@@ -193,7 +196,38 @@ bun run build        # Build for production
 bun run preview      # Preview production build locally
 ```
 
-## 🐛 Troubleshooting
+## 🤝 Contributing
+
+Contributions are welcome! Please see our [Contributing Guide](CONTRIBUTING.md) for details on:
+
+- Code of Conduct
+- Development setup
+- Coding guidelines
+- How to submit pull requests
+- Commit message conventions
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE) - see the license file for details.
+
+Copyright (c) 2026 Anbuselvan Annamalai
+
+## 👥 Authors
+
+- **Anbuselvan Annamalai** - *Initial work* - [15264938+anburocky3@users.noreply.github.com](mailto:15264938+anburocky3@users.noreply.github.com)
+
+## 🙏 Acknowledgments
+
+- [Wails](https://wails.io/) - Cross-platform desktop app framework
+- [React](https://reactjs.org/) - UI library
+- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
+- All [contributors](https://github.com/yourusername/goDev/graphs/contributors) who have helped shape goDev
+
+## 🔗 Links
+
+- [Issue Tracker](https://github.com/yourusername/goDev/issues)
+- [Security Policy](SECURITY.md)
+- [Code of Conduct](CODE_OF_CONDUCT.md)
 
 ### Common Issues
 
